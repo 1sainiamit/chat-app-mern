@@ -1,10 +1,11 @@
 import jwt from "jsonwebtoken";
-
+// jwt.sign(payload, secretOrPrivateKey, options) This function from the jsonwebtoken library creates a JSON Web Token (JWT).
 const generateTokenAndSetCookie = (userId, res) => {
   const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: "15d",
   });
 
+  // res.cookie(name, value, options) and This function sets a cookie in the response.
   res.cookie("jwt", token, {
     maxAge: 15 * 24 * 60 * 60 * 1000, //MS
     httpOnly: true, // prevents XSS attacks, cross-site scipting attacks
